@@ -23,3 +23,45 @@ if conexao!="":
     print("Conexao encerrada")
 else:
     print("Sem portas disponíveis")
+
+
+EXPLICAÇÃO DO CÓDIGO:
+Este projeto consiste em um simples script Python para controlar um dispositivo via porta serial. O código busca por uma conexão serial disponível em uma das portas COM do computador e permite ao usuário enviar comandos para ligar ou desligar o dispositivo.
+
+1. **Importação da Biblioteca Serial**:
+   ```python
+   import serial
+   ```
+   Esta linha importa a biblioteca `serial`, que permite a comunicação serial entre o computador e outros dispositivos.
+
+2. **Conexão Serial**:
+   ```python
+   conexao = ""
+   for porta in range(10):
+       try:
+           conexao = serial.Serial("COM"+str(porta), 115200, timeout=0.5)
+           print("Conectado na porta: ", conexao.portstr)
+           break
+       except serial.SerialException:
+           pass
+   ```
+   Este trecho do código busca por uma conexão serial disponível, percorrendo as portas COM de 0 a 9. Quando uma conexão é estabelecida com sucesso, exibe a porta conectada.
+
+3. **Controle do Dispositivo**:
+   ```python
+   if conexao != "":
+       acao = input("Digite:\n<L> para Ligar\n<D> para Desligar: ").upper()
+       while acao == "L" or acao == "D":
+           if acao == "L":
+               conexao.write(b'1')
+           else:
+               conexao.write(b'0')
+           acao = input("Digite:\n<L> para Ligar\n<D> para Desligar: ").upper()
+       conexao.close()
+       print("Conexão encerrada")
+   else:
+       print("Sem portas disponíveis")
+   ```
+   Este bloco de código permite ao usuário enviar comandos para ligar ou desligar o dispositivo conectado. O usuário digita 'L' para ligar ou 'D' para desligar. Os comandos são enviados pela porta serial. O loop continua até que o usuário digite um comando inválido ou interrompa o programa. Após o término da execução, a conexão serial é fechada. Se nenhuma porta estiver disponível, uma mensagem de erro é exibida.
+
+Este projeto é útil para iniciantes que desejam aprender sobre comunicação serial em Python e controle de dispositivos externos. É importante ter em mente que o dispositivo conectado deve estar configurado para receber os comandos enviados pelo script.

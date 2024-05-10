@@ -14,3 +14,29 @@ void loop() {
   Serial.write('1');
   delay(intervalo_pisca);
 }
+
+
+EXPLICAÇÃO DO CÓDIGO:
+**Projeto: Controle de LED com Arduino**
+
+Este projeto consiste em um código em linguagem Arduino para controlar o piscar de um LED conectado ao pino digital 10 da placa. Vamos explicar cada parte do código:
+
+1. **void setup()**: Esta é a função de configuração do Arduino. Ela é executada uma vez quando a placa é inicializada. Aqui, estamos configurando o pino 10 como saída (OUTPUT) para controlar o LED e inicializando a comunicação serial a uma taxa de 115200 bits por segundo.
+
+2. **void loop()**: Esta é a função principal do código. Ela é executada repetidamente enquanto a placa estiver ligada. Aqui está o que acontece dentro do loop:
+
+   a. **int intervalo_pisca**: Declaramos uma variável chamada intervalo_pisca para armazenar o tempo (em milissegundos) de cada intervalo de piscar do LED. Neste caso, intervalo_pisca é definido como 4000 milissegundos (4 segundos).
+
+   b. **digitalWrite(10, LOW)**: Esta linha faz com que o pino digital 10 seja definido como LOW, o que significa que a corrente elétrica é interrompida e o LED se apaga.
+
+   c. **Serial.write('0')**: Esta linha envia o caractere '0' pela porta serial. Pode ser usada para depuração ou comunicação com outros dispositivos.
+
+   d. **delay(intervalo_pisca)**: Esta função faz com que o Arduino aguarde o tempo especificado antes de continuar para a próxima instrução. Aqui, estamos esperando 4 segundos (o valor armazenado em intervalo_pisca).
+
+   e. **digitalWrite(10, HIGH)**: Esta linha faz com que o pino digital 10 seja definido como HIGH, o que significa que a corrente elétrica está fluindo e o LED se acende.
+
+   f. **Serial.write('1')**: Similar à linha anterior, esta linha envia o caractere '1' pela porta serial.
+
+   g. **delay(intervalo_pisca)**: Novamente, aguardamos o tempo especificado antes de repetir o ciclo.
+
+Este código faz com que o LED conectado ao pino digital 10 pisque em um intervalo de 4 segundos, alternando entre ligado e desligado, enquanto envia os caracteres '0' e '1' pela porta serial para possível monitoramento ou comunicação externa.

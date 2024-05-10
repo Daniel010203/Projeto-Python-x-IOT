@@ -6,3 +6,19 @@ void loop() {
   Serial.println(luz);
   delay(5000); 
 }
+
+
+EXPLICAÇÃO DO CÓDIGO:
+Este é um simples código em Arduino para medir a luminosidade utilizando um sensor de luz.
+
+### Explicação do Código:
+
+1. **void setup() { Serial.begin(115200); }**:
+   - Esta parte do código é executada uma vez quando o Arduino é ligado ou reiniciado.
+   - `Serial.begin(115200)` inicializa a comunicação serial com uma taxa de transmissão de 115200 bits por segundo (baud rate), permitindo a comunicação entre o Arduino e um dispositivo externo, como um computador.
+
+2. **void loop() { int luz=analogRead(1); Serial.println(luz); delay(5000); }**:
+   - Esta é a parte do código que é executada repetidamente após o término do `setup()`.
+   - `analogRead(1)` lê o valor analógico do pino A1, que está conectado ao sensor de luz. Este valor é então armazenado na variável `luz`.
+   - `Serial.println(luz)` imprime o valor lido do sensor de luz na porta serial, permitindo monitorar a luminosidade em tempo real.
+   - `delay(5000)` faz com que o Arduino espere 5 segundos antes de executar novamente o código dentro do loop. Isso evita que o Arduino leia o sensor de luz muito rapidamente, o que pode ser desnecessário e consumir recursos do microcontrolador.

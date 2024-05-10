@@ -24,3 +24,25 @@ if conexao!="":
     print("Conexão encerrada")
 else:
     print("Sem portas disponíveis")
+
+
+EXPLICAÇÃO DO CÓDIGO:
+# Projeto de Leitura de Temperatura via Porta Serial
+
+Este é um projeto simples que utiliza Python para ler dados de temperatura de um dispositivo conectado via porta serial e os armazena em um arquivo JSON.
+
+## Explicação do Código
+
+1. **Importação de Bibliotecas**: O código começa importando as bibliotecas necessárias, incluindo `serial` para comunicação serial, `json` para manipulação de arquivos JSON e `time` e `datetime` para gerenciar o tempo.
+
+2. **Estabelecimento da Conexão Serial**: O loop `for` tenta estabelecer uma conexão com o dispositivo em uma das portas COM disponíveis (de COM0 a COM9). Quando uma conexão é bem-sucedida, ela é armazenada na variável `conexao`.
+
+3. **Leitura e Armazenamento dos Dados de Temperatura**: Se uma conexão for estabelecida com sucesso, o código entra em um loop `while` que lê dados da porta serial e os armazena em um dicionário Python. Cada leitura é registrada com um carimbo de data e hora usando `datetime.now()`. O loop continua até que 10 leituras sejam feitas.
+
+4. **Escrita dos Dados em um Arquivo JSON**: Após a leitura dos dados, o dicionário contendo os dados de temperatura é escrito em um arquivo JSON chamado "Temperatura.json" usando a função `json.dump()`.
+
+5. **Encerramento da Conexão**: Após a conclusão da leitura e escrita dos dados, a conexão serial é fechada usando `conexao.close()`.
+
+6. **Mensagem de Feedback**: Se nenhuma porta estiver disponível ou se ocorrer algum erro durante o processo de conexão, uma mensagem apropriada será exibida.
+
+Este projeto é uma introdução simples à comunicação serial e à manipulação de arquivos em Python, adequado mesmo para aqueles sem experiência técnica prévia na área de TI.

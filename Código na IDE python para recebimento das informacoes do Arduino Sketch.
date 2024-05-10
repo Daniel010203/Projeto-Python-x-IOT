@@ -18,3 +18,40 @@ if conexao!="":
     print("Conexão encerrada")
 else:
     print("Sem portas disponíveis")
+
+
+EXPLICAÇÃO DO CÓDIGO:
+# Projeto: Controle de LED via Serial
+
+Este projeto consiste em um script Python que permite controlar um LED por meio de comunicação serial. O código é destinado a quem tem pouca ou nenhuma experiência em programação ou em tecnologia da informação.
+
+## Explicação do Código:
+
+1. **Importação da Biblioteca Serial**:
+   - `import serial`: Esta linha importa a biblioteca `serial`, que é utilizada para comunicação serial no Python.
+
+2. **Inicialização da Variável de Conexão**:
+   - `conexao=""`: Aqui, uma variável chamada `conexao` é inicializada como uma string vazia. Esta variável será utilizada para armazenar a conexão serial com o dispositivo.
+
+3. **Loop para Encontrar a Porta Serial Disponível**:
+   - `for porta in range(10):`: Este loop percorre as portas seriais COM0 a COM9 em busca da porta onde o dispositivo está conectado.
+   - `try` e `except`: Tenta estabelecer uma conexão serial com cada porta disponível. Se uma porta estiver indisponível ou não for encontrada, o código ignora o erro e passa para a próxima porta.
+
+4. **Estabelecimento da Conexão Serial**:
+   - `conexao = serial.Serial("COM"+str(porta), 115200)`: Se uma conexão for estabelecida com sucesso, a variável `conexao` armazena o objeto da conexão serial.
+   - `print("Conectado na porta: ", conexao.portstr)`: Uma mensagem é exibida indicando a porta serial à qual o dispositivo está conectado.
+
+5. **Loop de Leitura e Controle do LED**:
+   - `while True:`: Este loop é executado continuamente.
+   - `resposta = conexao.read()`: O script lê os dados recebidos da porta serial.
+   - `if resposta==b'1':`: Verifica se o dado recebido é o caractere '1'.
+   - `print("LED Ligado")` e `print("LED Desligado")`: Exibe mensagens indicando se o LED está ligado ou desligado, dependendo do caractere recebido.
+   
+6. **Fechamento da Conexão Serial**:
+   - `conexao.close()`: Após interromper o loop, a conexão serial é fechada.
+   - `print("Conexão encerrada")`: Uma mensagem é exibida para indicar que a conexão foi encerrada.
+
+7. **Mensagem de Porta Não Disponível**:
+   - `else: print("Sem portas disponíveis")`: Se nenhuma porta estiver disponível ou se o dispositivo não estiver conectado, uma mensagem informando a ausência de portas disponíveis é exibida.
+
+Este é um projeto simples que demonstra como controlar um LED utilizando Python e comunicação serial, sendo uma ótima introdução para quem está começando a explorar a programação em Python e eletrônica básica.

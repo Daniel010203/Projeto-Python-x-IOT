@@ -12,3 +12,59 @@ if conexao!="":
     print("Conexão encerrada")
 else:
     print("Sem portas disponíveis")
+
+
+EXPLICAÇÃO DO CÓDIGO:
+# Projeto: Conexão Serial Python
+
+Este projeto consiste em um script Python que busca estabelecer uma conexão serial com um dispositivo em uma porta específica do computador. Abaixo, vamos explicar cada parte do código para facilitar o entendimento:
+
+1. **Importação do módulo serial**:
+   ```python
+   import serial
+   ```
+   - Esta linha importa o módulo `serial`, que permite a comunicação serial em Python.
+
+2. **Inicialização da variável `conexao`**:
+   ```python
+   conexao = ""
+   ```
+   - Aqui, estamos inicializando a variável `conexao` como uma string vazia. Essa variável será utilizada para armazenar a conexão serial estabelecida.
+
+3. **Loop para tentar diferentes portas**:
+   ```python
+   for porta in range(10):
+   ```
+   - Este loop percorre uma faixa de números de 0 a 9, representando as portas COM possíveis em sistemas Windows.
+
+4. **Tentativa de estabelecer a conexão**:
+   ```python
+   try:
+       conexao = serial.Serial("COM"+str(porta), 115200, timeout=0.5)
+       print("Conectado na porta: ", conexao.portstr)
+       break
+   ```
+   - Dentro do loop, tentamos estabelecer uma conexão serial com cada porta COM disponível.
+   - Utilizamos a função `serial.Serial()` para abrir a conexão com a porta especificada.
+   - O parâmetro `115200` representa a taxa de transmissão (baud rate) da comunicação serial.
+   - O parâmetro `timeout=0.5` define um tempo limite de 0.5 segundos para esperar por uma resposta do dispositivo.
+   - Se a conexão for bem-sucedida, exibimos a mensagem "Conectado na porta" seguida pelo número da porta.
+
+5. **Encerramento da conexão, se estabelecida**:
+   ```python
+   if conexao!="":
+       conexao.close()
+       print("Conexão encerrada")
+   ```
+   - Após estabelecer a conexão, verificamos se a variável `conexao` não está vazia.
+   - Se uma conexão foi estabelecida, utilizamos o método `close()` para encerrá-la.
+   - Em seguida, exibimos a mensagem "Conexão encerrada".
+
+6. **Mensagem em caso de falha na conexão**:
+   ```python
+   else:
+       print("Sem portas disponíveis")
+   ```
+   - Se nenhuma porta COM estiver disponível ou se nenhuma conexão puder ser estabelecida, exibimos a mensagem "Sem portas disponíveis".
+
+Este script é útil para verificar e estabelecer uma conexão serial com dispositivos externos, como microcontroladores ou sensores, facilitando a comunicação entre eles e o computador.
